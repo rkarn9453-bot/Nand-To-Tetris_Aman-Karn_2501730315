@@ -1,0 +1,51 @@
+// Box.asm  -  K = 15
+(LOOP)
+    @24576
+    D=M
+    @BLACK
+    D;JNE
+    @color
+    M=0
+    @DRAW
+    0;JMP
+(BLACK)
+    @color
+    M=-1
+(DRAW)
+    @18368
+    D=A
+    @addr
+    M=D
+    @20
+    D=A
+    @rows
+    M=D
+(ROWLOOP)
+    @3
+    D=A
+    @cols
+    M=D
+(COLLOOP)
+    @color
+    D=M
+    @addr
+    A=M
+    M=D
+    @addr
+    M=M+1
+    @cols
+    M=M-1
+    D=M
+    @COLLOOP
+    D;JGT
+    @29
+    D=A
+    @addr
+    M=D+M
+    @rows
+    M=M-1
+    D=M
+    @ROWLOOP
+    D;JGT
+    @LOOP
+    0;JMP
